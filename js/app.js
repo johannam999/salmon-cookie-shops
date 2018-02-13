@@ -29,18 +29,18 @@ var storePike = {
       this.totalDaySales += this.totalSoldPH[k];
     }
   },
-	
+
   render: function(){
     var ulEl = document.getElementById('pikep');
     for (var l = 0; l<this.totalSoldPH.length; l++){
       var liEl = document.createElement('li');
       liEl.textContent = hours[l] + ': ' + Math.round(this.totalSoldPH[l]) + ' cookies';
       ulEl.appendChild(liEl);
-   
+
     }
-    var liEl = document.createElement('li');
+    liEl = document.createElement('li');
     liEl.textContent = 'Total: ' + Math.round(this.totalDaySales);
-    ulEl.appendChild(liEl);	
+    ulEl.appendChild(liEl);
   }
 };
 storePike.calcTotalDaySales();
@@ -87,9 +87,9 @@ var storeSeaTac = {
       liEl.textContent = hours[l] + ': ' + Math.round(this.totalSoldPH[l]) + ' cookies';
       ulEl.appendChild(liEl);
     }
-    var liEl = document.createElement('li');
+    liEl = document.createElement('li');
     liEl.textContent = 'Total: ' + Math.round(this.totalDaySales);
-    ulEl.appendChild(liEl);	
+    ulEl.appendChild(liEl);
   }
 };
 storeSeaTac.calcTotalDaySales();
@@ -133,9 +133,9 @@ var storeSeattleCenter = {
       liEl.textContent = hours[l] + ': ' + Math.round(this.totalSoldPH[l])  + ' cookies';
       ulEl.appendChild(liEl);
     }
-    var liEl = document.createElement('li');
+    liEl = document.createElement('li');
     liEl.textContent = 'Total: ' + Math.round(this.totalDaySales);
-    ulEl.appendChild(liEl);	
+    ulEl.appendChild(liEl);
   }
 };
 
@@ -148,8 +148,8 @@ var storeCapitolHill = {
   maxCustomerPH: 38,
   averageCookiesPCustomer: 3.7,
   totalCustomerPH :[],
-  	totalSoldPH:[],
-  	totalDaySales:0,
+  totalSoldPH:[],
+  totalDaySales:0,
 
 
   rndmcustomerPH: function() {
@@ -172,7 +172,7 @@ var storeCapitolHill = {
       this.totalDaySales += this.totalSoldPH[k];
     }
   },
-	
+
   render: function(){
     var ulEl = document.getElementById('capitolh');
     for (var l = 0; l<this.totalSoldPH.length; l++){
@@ -180,16 +180,16 @@ var storeCapitolHill = {
       liEl.textContent = hours[l] + ': ' + Math.round(this.totalSoldPH[l])  + ' cookies';
       ulEl.appendChild(liEl);
     }
-    var liEl = document.createElement('li');
+    liEl = document.createElement('li');
     liEl.textContent = 'Total: ' + Math.round(this.totalDaySales);
-    ulEl.appendChild(liEl);	
+    ulEl.appendChild(liEl);
   }
 };
 storeCapitolHill.calcTotalDaySales();
 console.log(storeCapitolHill.totalDaySales);
 storeCapitolHill.render();
 
-	
+
 
 var storeAlki = {
   minCustomerPH: 2,
@@ -220,7 +220,7 @@ var storeAlki = {
       this.totalDaySales += this.totalSoldPH[k];
     }
   },
-	
+
   render: function(){
     var ulEl = document.getElementById('alki');
     for (var l = 0; l<this.totalSoldPH.length; l++){
@@ -228,9 +228,9 @@ var storeAlki = {
       liEl.textContent = hours[l] + ': ' + Math.round(this.totalSoldPH[l])  + ' cookies';
       ulEl.appendChild(liEl);
     }
-    var liEl = document.createElement('li');
+    liEl = document.createElement('li');
     liEl.textContent = 'Total: ' + Math.round(this.totalDaySales);
-    ulEl.appendChild(liEl);	
+    ulEl.appendChild(liEl);
   }
 };
 storeAlki.calcTotalDaySales();
