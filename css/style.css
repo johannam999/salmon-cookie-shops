@@ -2,6 +2,12 @@ body {
     margin-left: 40px;
     font-family: 'BioRhyme Expanded', serif;
 }
+h1{
+    font-weight:bold;
+    padding:30px;
+    font-size: 20px;
+    
+}
 h2{
     font-size: 20px;
     font-weight: bold;
@@ -10,10 +16,10 @@ h2{
     
     
 }
-  img{
-      padding-bottom: 50px;
-      padding-top: 30px;
-  }
+img{
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
 ul li { 
     margin-top: 5px;
     margin-left: 40px;
