@@ -4,9 +4,10 @@ body {
 }
 h2{
     font-size: 20px;
-    font-style: bold;
+    font-weight: bold;
     text-transform:uppercase;
     padding: 15px;
+    
     
 }
   img{
@@ -17,4 +18,8 @@ ul li {
     margin-top: 5px;
     margin-left: 40px;
     padding-left: 15px;
+}
+li:nth-last-child(1){
+    font-weight: bold;
+    
 }
