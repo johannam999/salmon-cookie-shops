@@ -1,6 +1,10 @@
+*{
+    font-family: 'Baloo', cursive;
+}
 body {
     margin-left: 40px;
     font-family: 'BioRhyme Expanded', serif;
+    background: #ccc;
 }
 h1{
     font-weight:bold;
@@ -27,5 +31,27 @@ ul li {
 }
 li:nth-last-child(1){
     font-weight: bold;
+    
+}
+#cookies{
+    font-family: Verdana;
+}
+td {
+    padding:20px;
+    margin: 10px;
+    border: 1px solid black;
+}
+table {
+	border: 8px solid black;
+}
+th {
+    padding: 10px;
+	
+    border: 1px solid black;
+    background: white;
+    font-weight:bold;
+}
+td:first-child{
+    font-weight:bold;
     
 }
