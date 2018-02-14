@@ -1,59 +1,147 @@
 'use strict';
 
 var hours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
-var storePike = {
-  minCustomerPH: 23,
-  maxCustomerPH: 65,
-  averageCookiesPCustomer: 6.3,
-  totalCustomerPH :[],
-  totalSoldPH:[],
-  totalDaySales:0,
+//var storeLocation = ['pikePlace', 'seaTac', 'seattleCenter', 'capitolHill','alki'];
+var storeList = [];
+var cookiesTable = document.getElementById('cookies');
+function Store(storeLocation, minCustomerPH, maxCustomerPH, averageCookiesPCustomer) {
+  this.storeLocation = storeLocation;
+  this.minCustomerPH = minCustomerPH;
+  this.maxCustomerPH = maxCustomerPH;
+  this.averageCookiesPCustomer = averageCookiesPCustomer;
+  this.totalCustomerPH = [];
+  this.totalSoldPH = [];
+  this.totalDaySales = 0;
+  storeList.push(this);
+}
 
-
-  rndmcustomerPH: function() {
-    for (var i = 0; i < hours.length; i++){
-      this.totalCustomerPH.push(Math.floor(Math.random() * (this.maxCustomerPH - this.minCustomerPH+1)) + this.minCustomerPH);
-    }
-  },
-
-  calcSalesPH: function(){
-    this.rndmcustomerPH();
-    for (var j = 0; j < this.totalCustomerPH.length; j++){
-      var hourlySales = this.totalCustomerPH[j] * this.averageCookiesPCustomer;
-      this.totalSoldPH.push(hourlySales);
-      this.totalDaySales += hourlySales;
-    }
-  },
-  /*calcTotalDaySales: function(){
-    this.calcSalesPH();
-    for ( var k = 0; k < this.totalSoldPH.length; k++){
-      this.totalDaySales += this.totalSoldPH[k];
-      //console.log(this.totalCustomerPH[k], 'customers from inside loop' );
-    }
-  },*/
-
-  render: function(){
-    this.calcSalesPH();
-
-    var ulEl = document.getElementById('pikep');
-    for (var l = 0; l < this.totalSoldPH.length; l++){
-      var liEl = document.createElement('li');
-      liEl.textContent = hours[l] + ': ' + Math.round(this.totalSoldPH[l]) + ' cookies';
-      ulEl.appendChild(liEl);
-
-    }
-    //this.calcTotalDaySales();
-    liEl = document.createElement('li');
-    liEl.textContent = 'Total: ' + Math.round(this.totalDaySales);
-    ulEl.appendChild(liEl);
+Store.prototype.rndmcustomerPH = function() {
+  for (var i = 0; i < hours.length; i++){
+    this.totalCustomerPH.push(Math.floor(Math.random() * (this.maxCustomerPH - this.minCustomerPH+1)) + this.minCustomerPH);
   }
 };
+Store.prototype.calcSalesPH = function(){
+  this.rndmcustomerPH();
+  for (var i = 0; i < this.totalCustomerPH.length; i++){
+    var hourlySales = this.totalCustomerPH[i] *  Math.ceil(this.averageCookiesPCustomer);
+    this.totalSoldPH.push(hourlySales);
+    this.totalDaySales += hourlySales;
+  }
+};
+Store.prototype.calcTotalDaySales = function(){
+  this.calcSalesPH();
+  for ( var k = 0; k < this.totalSoldPH.length; k++){
+    this.totalDaySales += this.totalSoldPH[k];
+    //console.log(this.totalCustomerPH[k], 'customers from inside loop' );
+  }
+};
+Store.prototype.render = function(){
+  this.calcTotalDaySales();
+  var trEl = document.createElement('tr');
+  var tdEl = document.createElement ('td');
 
 
-storePike.render();
+  tdEl.textContent=this.storeLocation;
+  trEl.appendChild(tdEl);
+  for( var i = 0; i < hours.length; i++){
+    tdEl = document.createElement('td');
+    tdEl.textContent = this.totalSoldPH[i];
+    trEl.appendChild(tdEl);
+  }
+  tdEl = document.createElement('td');
+  tdEl.textContent = this.totalDaySales;
+  trEl.appendChild(tdEl);
+  cookiesTable.append(trEl);
+
+
+};
+
+function makeHeaderRow(){
+
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  thEl.textContent = 'Store Location';
+  trEl.appendChild(thEl);
+  for (var i = 0; i < hours.length; i++) {
+    thEl = document.createElement('th');
+    thEl.textContent = hours[i];
+    trEl.appendChild(thEl);
+  }
+  thEl = document.createElement('th');
+  thEl.textContent = 'Total Day Sales';
+  trEl.appendChild(thEl);
+
+  cookiesTable.append(trEl);
+
+}
+function cookieRows() {
+  makeHeaderRow();
+  for (var i = 0; i< storeList.length; i++){
+    storeList[i].render();
+  }
+}
+
+/*var ulEl = document.getElementById('pikep');
+  for (var i = 0; i < this.totalSoldPH.length; i++){
+    var liEl = document.createElement('li');
+    liEl.textContent = hours[i] + ': ' + Math.floor(this.totalSoldPH[i]) + ' cookies';
+    ulEl.appendChild(liEl);
+
+  }
+  //this.calcTotalDaySales();
+  liEl = document.createElement('li');
+  liEl.textContent = 'Total: ' + this.totalDaySales;
+	ulEl.appendChild(liEl);
+*/
+
+new Store('Pike Place',23, 65, 6.3);
+new Store('SeaTac Airport', 3, 24, 1.2);
+new Store('Seattle Center', 11, 38, 3.7);
+new Store('Capitol Hill', 20, 38, 2.3);
+new Store('Alki', 2, 16, 4.6);
+
+cookieRows();
+
+/*
+function makeHeaderRow(){
+
+  var trEl = document.createElement('tr');
+  var thEl = document.createElement('th');
+  thEl.textContent = 'Name';
+  trEl.appendChild('thEl');
+
+  thEl = document.createElement('th');
+  thEl.textContent = 'Color';
+  trEl.appendChild(thEl);
+
+  thEl = document.createElement('th');
+  thEl.textContent = 'Tail Size';
+  trEl.appendChild(thEl);
+
+  catTable.append(trEl);
+}
+function cookieRows()
+//makeHeaderRow() /// here or below
+{	for (var i = 0; i< storeList.length; i++){
+  storeList[i].render();
+}
+
+
+}
+//makeHeaderRow()
+cookieRows();
 
 
 
+
+
+
+
+
+
+
+
+/*
 var storeSeaTac = {
   minCustomerPH: 3,
   maxCustomerPH: 24,
@@ -241,43 +329,4 @@ var storeAlki = {
 storeAlki.calcTotalDaySales();
 console.log(storeAlki.totalDaySales);
 storeAlki.render();
-
-/*
-var tr El = document.createElement('tr');
-var tdEl = document.createElement ('td');
-tdEl.textContent=this.name;
-trEl.appendChild(tdEl);
-
-tdEl = document.createElement('td');
-td.textContent = this.color;
-trEl.appendChild(tdEl);
-
-tdEl = document.createElement('td');
-td.textContent = this.tailSize;
-trEl.appendChild(tdEl);
-
-function makeHeaderRow(){
-
-	var trEl = document.createElement('tr');
-	var thEl = document.createElement('th');
-	thEl.textContent = 'Name';
-	trEl.appendChild('thEl');
-
-	thEl = document.createElement('th');
-	thEl.textContent = 'Color';
-	trEl.appendChild(thEl);
-
-	thEl = document.createElement('th');
-	thEl.textContent = 'Tail Size';
-	trEl.appendChild(thEl);
-
-	catTable.append(trEl);
-}
-function makeCatRows()
-makeHeaderRow() /// here or below
-{	for (var i = 0; i< allCat.length; i++){
-		allCats[i].render();
-		}
-	}
-makeHeaderRow()
-makeCatRows();*/
+*/
