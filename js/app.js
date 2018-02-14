@@ -1,6 +1,6 @@
 'use strict';
 
-var hours = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
+var hours = ['6:00am','7:00am','8:00am','9:00am','10:00am','11:00am','12:00pm','1:00pm','2:00pm','3:00pm','4:00pm','5:00pm','6:00pm','7:00pm'];
 //var storeLocation = ['pikePlace', 'seaTac', 'seattleCenter', 'capitolHill','alki'];
 var storeList = [];
 var cookiesTable = document.getElementById('cookies');
@@ -23,7 +23,7 @@ Store.prototype.rndmcustomerPH = function() {
 Store.prototype.calcSalesPH = function(){
   this.rndmcustomerPH();
   for (var i = 0; i < this.totalCustomerPH.length; i++){
-    var hourlySales = this.totalCustomerPH[i] *  Math.ceil(this.averageCookiesPCustomer);
+    var hourlySales = this.totalCustomerPH[i] * Math.ceil(this.averageCookiesPCustomer);
     this.totalSoldPH.push(hourlySales);
     this.totalDaySales += hourlySales;
   }
@@ -57,9 +57,9 @@ Store.prototype.render = function(){
 };
 
 function makeHeaderRow(){
-
   var trEl = document.createElement('tr');
   var thEl = document.createElement('th');
+
   thEl.textContent = 'Store Location';
   trEl.appendChild(thEl);
   for (var i = 0; i < hours.length; i++) {
@@ -81,6 +81,19 @@ function cookieRows() {
   }
 }
 
+
+
+new Store('Pike Place',23, 65, 6.3);
+new Store('SeaTac Airport', 3, 24, 1.2);
+new Store('Seattle Center', 11, 38, 3.7);
+new Store('Capitol Hill', 20, 38, 2.3);
+new Store('Alki', 2, 16, 4.6);
+
+
+cookieRows();
+
+
+
 /*var ulEl = document.getElementById('pikep');
   for (var i = 0; i < this.totalSoldPH.length; i++){
     var liEl = document.createElement('li');
@@ -93,15 +106,6 @@ function cookieRows() {
   liEl.textContent = 'Total: ' + this.totalDaySales;
 	ulEl.appendChild(liEl);
 */
-
-new Store('Pike Place',23, 65, 6.3);
-new Store('SeaTac Airport', 3, 24, 1.2);
-new Store('Seattle Center', 11, 38, 3.7);
-new Store('Capitol Hill', 20, 38, 2.3);
-new Store('Alki', 2, 16, 4.6);
-
-cookieRows();
-
 /*
 function makeHeaderRow(){
 
@@ -125,23 +129,11 @@ function cookieRows()
 {	for (var i = 0; i< storeList.length; i++){
   storeList[i].render();
 }
-
-
 }
 //makeHeaderRow()
 cookieRows();
 
 
-
-
-
-
-
-
-
-
-
-/*
 var storeSeaTac = {
   minCustomerPH: 3,
   maxCustomerPH: 24,
