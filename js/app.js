@@ -1,7 +1,6 @@
 'use strict';
 
 var hours = ['6:00am','7:00am','8:00am','9:00am','10:00am','11:00am','12:00pm','1:00pm','2:00pm','3:00pm','4:00pm','5:00pm','6:00pm','7:00pm'];
-//var storeLocation = ['pikePlace', 'seaTac', 'seattleCenter', 'capitolHill','alki'];
 var storeList = [];
 var cookiesTable = document.getElementById('cookies');
 function Store(storeLocation, minCustomerPH, maxCustomerPH, averageCookiesPCustomer) {
@@ -13,6 +12,10 @@ function Store(storeLocation, minCustomerPH, maxCustomerPH, averageCookiesPCusto
   this.totalSoldPH = [];
   this.totalDaySales = 0;
   storeList.push(this);
+  // i can test within constructor this.totalCustomerPH();
+  //this.totalSoldPH();
+  //console.log('NEw cookie stand create for ' +this.storeLocation);
+  //this.totalSoldPH[0]  getting to specific item in the array
 }
 
 Store.prototype.rndmcustomerPH = function() {
@@ -30,8 +33,8 @@ Store.prototype.calcSalesPH = function(){
 };
 Store.prototype.calcTotalDaySales = function(){
   this.calcSalesPH();
-  for ( var k = 0; k < this.totalSoldPH.length; k++){
-    this.totalDaySales += this.totalSoldPH[k];
+  for ( var i = 0; i < this.totalSoldPH.length; i++){
+    this.totalDaySales += this.totalSoldPH[i];
     //console.log(this.totalCustomerPH[k], 'customers from inside loop' );
   }
 };
@@ -76,7 +79,7 @@ function makeHeaderRow(){
 }
 function cookieRows() {
   makeHeaderRow();
-  for (var i = 0; i< storeList.length; i++){
+  for (var i = 0; i < storeList.length; i++){
     storeList[i].render();
   }
 }
@@ -91,6 +94,40 @@ new Store('Alki', 2, 16, 4.6);
 
 
 cookieRows();
+
+var storeDataForm = document.getElementById('storeData-form');
+
+
+/*function renderFormData (){
+	for (var i= 0; i < allFormData.length; i++){
+		storeList.appendChild(allFormData[i].render());
+
+}*/
+//function handleFormDataSubmit(event)
+//{}
+function handleDataSubmit(event){
+
+  event.preventDefault();
+  var where = event.target.where.value;
+  var min = parseInt(event.target.min.value);
+  var max = parseInt(event.target.max.value);
+  var average = Number(event.target.average.value);
+  //	if (where === storeLocation[i]){
+  //overwrite the existing data
+  //}
+  if (!where || !min || !max || !average){
+    return alert('Empty fields!');
+  }
+  //for (var i = 0; i< storeLocation.length, i++){
+  //if (where === storeLocation[i]);
+
+
+  event.target.reset();
+  var newStore = new Store(where, min, max, average);
+  newStore.render();
+}
+
+storeDataForm.addEventListener('submit', handleDataSubmit);
 
 
 
