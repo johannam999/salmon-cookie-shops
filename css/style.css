@@ -8,6 +8,7 @@ body {
 legend{
     font-weight:bold;
     text-transform: uppercase;
+    font-size: 25px;
 }
 fieldset {
     background-color: beige;
@@ -17,14 +18,21 @@ fieldset {
     padding: 15px;
     text-align: center;
     line-height: 50px;
+    margin: 20px;
     
 }
 button {
+    margin:10px;
+    padding: 10px;
+    background-color: #e9119a5d;
+    border-radius: 5px;
+    font-size: 15px;
+    
 
 }
 input{
     padding:5px;
-    border-color: #73094c;
+    border-color: #e9119a;
 }
 h1{
     font-weight:bold;
@@ -54,6 +62,7 @@ table{
     width:300px;
     border: 8px solid black;
     border-radius: 25px;
+    border-collapse: separate;
 }
 tr {
     border-radius: 15px;
@@ -63,17 +72,25 @@ td {
     margin: 10px;
     border: 1px solid black;
     text-align: center;
-    
+    border-radius: 15px;
+    background: beige;
     
 }
 th {
-    padding: 10px;
+    padding: 5px;
 	border: 1px solid black;
-    background: rgba(230, 230, 11, 0.995);
+    background: #73094c76;
     font-weight:bold;
+    border-radius: 15px;
+    text-align: center;
+    
 }
 td:first-child{
     font-weight:bold;    
+}
+td:last-child{
+    font-weight:bold;  
+    background: #e9119a5d;  
 }
 
 
