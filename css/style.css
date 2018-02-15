@@ -59,6 +59,7 @@ ul li {
 
 
 table{
+    float: left;
     width:300px;
     border: 8px solid black;
     border-radius: 25px;
