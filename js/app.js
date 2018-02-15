@@ -97,14 +97,6 @@ cookieRows();
 
 var storeDataForm = document.getElementById('storeData-form');
 
-
-/*function renderFormData (){
-	for (var i= 0; i < allFormData.length; i++){
-		storeList.appendChild(allFormData[i].render());
-
-}*/
-//function handleFormDataSubmit(event)
-//{}
 function handleDataSubmit(event){
 
   event.preventDefault();
@@ -112,15 +104,16 @@ function handleDataSubmit(event){
   var min = parseInt(event.target.min.value);
   var max = parseInt(event.target.max.value);
   var average = Number(event.target.average.value);
-  //	if (where === storeLocation[i]){
-  //overwrite the existing data
-  //}
+  
   if (!where || !min || !max || !average){
     return alert('Empty fields!');
   }
-  //for (var i = 0; i< storeLocation.length, i++){
-  //if (where === storeLocation[i]);
-
+  /*for (var i = 0; i< storeList.length, i++){
+		if (where === storeList[i].storeLocation){
+			cookiesTable.append(trEl);
+		}
+	}
+*/
 
   event.target.reset();
   var newStore = new Store(where, min, max, average);
