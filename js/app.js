@@ -146,6 +146,22 @@ function handleDataSubmit(event){
   if (!where || !min || !max || !average){
     return alert('Empty fields!');
   }
+
+
+  /* CREATE FUNCTION FOR ADDING TO TABLE
+
+  function newElement( elementTYpe, content, parent){
+    var newEl = document.createElement(elementType);
+    newEl.assign
+    newEl.textContent = content;
+    parent.appendChild.(newEl);
+
+  }
+
+  call after row creating
+  
+
+
   /*for (var i = 0; i< storeList.length, i++){
 		if (where === storeList[i].storeLocation){
 

@@ -18,26 +18,45 @@ h1{
 }
 img{
     padding-bottom: 50px;
-    padding: 30px;
+    padding: 10px;
+}
 #fam {
     align:left;
     margin:10px;
 
 }
-.cookies{
+
+.one, .tshirt, .locations {
+    background-color: rgba(68, 45, 45, 0.461);
     
-   
+}
+.cookies img{
+    
+    
 }
 
-
+.one, .cookies, .tshirt, .fish {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    height:300px;
+}
+.locations{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    height:700px;}
 p {
-    width:23%;
-    float:left;
+    width:53%;
+    float:right;
     margin:5px;
     padding:30px;  
 }
 
 section {
     float:left; 
-    margin:30px;
+   
+}
+li{
+    display:inline-block;
+    align-content: center;
+    background:grey;
 }
