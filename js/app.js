@@ -31,7 +31,7 @@ Store.prototype.calcSalesPH = function(){
   for (var i = 0; i < this.totalCustomerPH.length; i++){
     var hourlySales = this.totalCustomerPH[i] * Math.ceil(this.averageCookiesPCustomer);
     this.totalSoldPH.push(hourlySales);
-    this.totalDaySales += hourlySales;
+    //this.totalDaySales += hourlySales;
   }
 };
 Store.prototype.calcTotalDaySales = function(){
@@ -40,7 +40,8 @@ Store.prototype.calcTotalDaySales = function(){
     this.totalDaySales += this.totalSoldPH[i];
     //console.log(this.totalCustomerPH[k], 'customers from inside loop' );
   }
-};
+};  
+
 Store.prototype.render = function(){
   this.calcTotalDaySales();
   var trEl = document.createElement('tr');
