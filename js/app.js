@@ -12,8 +12,6 @@ function Store(storeLocation, minCustomerPH, maxCustomerPH, averageCookiesPCusto
   this.totalCustomerPH = [];
   this.totalSoldPH = [];
   this.totalDaySales = 0;
-
-
   storeList.push(this);
   // i can test within constructor this.totalCustomerPH();
   //this.totalSoldPH();
@@ -31,19 +29,19 @@ Store.prototype.calcSalesPH = function(){
   for (var i = 0; i < this.totalCustomerPH.length; i++){
     var hourlySales = this.totalCustomerPH[i] * Math.ceil(this.averageCookiesPCustomer);
     this.totalSoldPH.push(hourlySales);
-    //this.totalDaySales += hourlySales;
+    this.totalDaySales += hourlySales;
   }
 };
-Store.prototype.calcTotalDaySales = function(){
+/*Store.prototype.calcTotalDaySales = function(){
   this.calcSalesPH();
   for ( var i = 0; i < this.totalSoldPH.length; i++){
     this.totalDaySales += this.totalSoldPH[i];
     //console.log(this.totalCustomerPH[k], 'customers from inside loop' );
   }
-};  
+};  */
 
 Store.prototype.render = function(){
-  this.calcTotalDaySales();
+  this.calcSalesPH();
   var trEl = document.createElement('tr');
   var tdEl = document.createElement ('td');
 
@@ -58,7 +56,14 @@ Store.prototype.render = function(){
   tdEl = document.createElement('td');
   tdEl.textContent = this.totalDaySales;
   trEl.appendChild(tdEl);
-  cookiesTable.append(trEl);
+  //cookiesTable.append(trEl);
+  var totalsRow = document.getElementById('totals-row');
+
+  if (totalsRow == null) {
+    cookiesTable.append(trEl);
+  } else {
+    cookiesTable.insertBefore(trEl, totalsRow);
+  }
 };
 
 
@@ -91,14 +96,15 @@ function cookieRows() {
 function footerRow (){
   var grandTotal = 0;
   var totalsRow = document.createElement('tr');
+  totalsRow.id = 'totals-row';
   var firstCol = document.createElement('td');
   firstCol.textContent = 'Totals';
   totalsRow.appendChild(firstCol);
 
-  for (var i = 0; i < hours.length; i++){
+  for (var hour = 0; hour < hours.length; hour++){
     var hourlyTotal = 0;
-    for (var l = 0; l < storeList.length; l++){
-      hourlyTotal += storeList[l].totalSoldPH[i];
+    for (var storeNo = 0; storeNo < storeList.length; storeNo++){
+      hourlyTotal += storeList[storeNo].totalSoldPH[hour];
     }
     grandTotal += hourlyTotal;
     var middleCol = document.createElement('td');
@@ -122,28 +128,33 @@ function footerRow (){
 */
 }
 
+function main() {
+  new Store('Pike Place',23, 65, 6.3);
+  new Store('SeaTac Airport', 3, 24, 1.2);
+  new Store('Seattle Center', 11, 38, 3.7);
+  new Store('Capitol Hill', 20, 38, 2.3);
+  new Store('Alki', 2, 16, 4.6);
+  
+  
+  cookieRows();
+  
+  var storeDataForm = document.getElementById('storeData-form');
+
+  footerRow();
+  storeDataForm.addEventListener('submit', handleDataSubmit);
+}
 
 
-new Store('Pike Place',23, 65, 6.3);
-new Store('SeaTac Airport', 3, 24, 1.2);
-new Store('Seattle Center', 11, 38, 3.7);
-new Store('Capitol Hill', 20, 38, 2.3);
-new Store('Alki', 2, 16, 4.6);
-
-
-cookieRows();
-footerRow();
-var storeDataForm = document.getElementById('storeData-form');
 
 function handleDataSubmit(event){
 
   event.preventDefault();
-  var where = event.target.where.value;
-  var min = parseInt(event.target.min.value);
+  var where = event.target.where.value; //setting values from input
+  var min = parseInt(event.target.min.value);//convert string to numbers
   var max = parseInt(event.target.max.value);
   var average = Number(event.target.average.value);
 
-  if (!where || !min || !max || !average){
+  if (!where || !min || !max || !average){// if input is empty then alert
     return alert('Empty fields!');
   }
 
@@ -159,7 +170,7 @@ function handleDataSubmit(event){
   }
 
   call after row creating
-  
+
 
 
   /*for (var i = 0; i< storeList.length, i++){
@@ -191,15 +202,16 @@ Store.renderTable = function(){
 
 
 }
-	//clean the form
+
 */
-
-  event.target.reset();
-  var newStore = new Store(where, min, max, average);
-  newStore.render();
+//otherwise:
+  event.target.reset(); //clean old values from min,max, ave and location field
+  var newStore = new Store(where, min, max, average);//create new store
+  newStore.render();//add new store to the table
+  
 }
+main();
 
-storeDataForm.addEventListener('submit', handleDataSubmit);
 
 
 
@@ -232,23 +244,7 @@ storeDataForm.addEventListener('submit', handleDataSubmit);
 	ulEl.appendChild(liEl);
 */
 /*
-function makeHeaderRow(){
 
-  var trEl = document.createElement('tr');
-  var thEl = document.createElement('th');
-  thEl.textContent = 'Name';
-  trEl.appendChild('thEl');
-
-  thEl = document.createElement('th');
-  thEl.textContent = 'Color';
-  trEl.appendChild(thEl);
-
-  thEl = document.createElement('th');
-  thEl.textContent = 'Tail Size';
-  trEl.appendChild(thEl);
-
-  catTable.append(trEl);
-}
 function cookieRows()
 //makeHeaderRow() /// here or below
 {	for (var i = 0; i< storeList.length; i++){
