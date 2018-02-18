@@ -8,7 +8,9 @@ body{
     margin:0px auto;
 
 }
-
+header{
+    margin:0;
+}
 
 #salmon{
     margin-left: auto;
@@ -17,10 +19,12 @@ body{
     width:150px;
     
 }
-cookie{
-    margin:0px auto;
-    width:960px;
+#cookie{
     display:block;
+    margin-right:5px;
+    padding-left:5px;
+    width:960px;
+    
 }
 h1{
     font-weight: bold;
@@ -51,7 +55,18 @@ img{
     margin-top:40px;
 }
 .cookie p {
+    padding-top:60px;
+}
+.fish img:first-child{
+    display:block;
+    float:left;
     margin-top:50px;
+    padding-left:40px;
+}
+.fish img{
+    display:inline;
+    margin-top:80px;
+
 }
 .family, .tshirt, .locations {    
     background-color: rgba(68, 45, 45, 0.461);  
@@ -72,8 +87,9 @@ tshit img{
     height:700px;
     }
 
-.location h2{
-    float:right;
+.locations h2{
+    display:block;
+    padding-left: 415px;
 }
 p:first-child {
     padding-top:20px;}
@@ -93,10 +109,12 @@ section {
 li{
     display:inline-block;
     align-content: center;
-    margin-left:40px;
+    margin-left:80px;
     padding:30px;
+    font-weight:bold;
 }
 footer p {
-    font-size:15px;
+    font-size:8px;
+    padding-left:400px;
 }
     
