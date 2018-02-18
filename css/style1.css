@@ -36,6 +36,7 @@ img{
     padding-bottom: 50px;
     padding: 10px;
 }
+
 .family img {
    display:block;
    float:left;
@@ -101,17 +102,23 @@ p {
     padding:30px;
     padding-top:50px;  
 }
-
+#loc {
+    font-weight:bold;
+    text-transform: uppercase;
+}
 section {
     float:left; 
    
 }
-li{
+nav li{
     display:inline-block;
-    align-content: center;
     margin-left:80px;
     padding:30px;
     font-weight:bold;
+}
+a {
+    text-decoration: none;
+    color:black;
 }
 footer p {
     font-size:8px;
